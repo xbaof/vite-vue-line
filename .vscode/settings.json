@@ -45,7 +45,6 @@
   },
   "files.exclude": {
     "**/.cache": true,
-    "**/.editorconfig": true,
     "**/bower_components": true,
     "**/.idea": true,
     "**/tmp": true,
@@ -53,7 +52,8 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
-    "**/.DS_Store": true
+    "**/.DS_Store": true,
+    ".eslintcache": true
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
