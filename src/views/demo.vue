@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import SelectIcon from '@/components/SelectIcon/index.vue'
 import { ref } from 'vue'
 const test = ref()
 test.value = import.meta.env.VITE_PUBLIC_PATH
@@ -14,6 +15,9 @@ test.value = import.meta.env.VITE_PUBLIC_PATH
     <svg-icon name="exit-fullscreen" size="20" color="red" />
     <span>local：</span>
     <svg-icon name="local-enter" size="20" />
+    <br />
+    <span>SelectIcon：</span>
+    <select-icon />
   </div>
 
   <p>
