@@ -18,15 +18,6 @@ test.value = import.meta.env.VITE_PUBLIC_PATH
     <br />
     <span>SelectIcon：</span>
     <select-icon clearable />
-    <el-select>
-      <h1>{{ test }}</h1>
-      <span>el-icon：</span>
-      <svg-icon name="el-icon-Edit" size="20" color="red" />
-      <span>iconfont：</span>
-      <svg-icon name="exit-fullscreen" size="20" color="red" />
-      <span>local：</span>
-      <svg-icon name="local-enter" size="20" />
-    </el-select>
   </div>
 
   <p>

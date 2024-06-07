@@ -1,29 +1,49 @@
 <template>
-  <el-input
-    ref="inputRef"
+  <el-select
     v-model="activeName"
+    clearable
+    collapse-tags
+    filterable
+    placeholder="Select"
+    :max-collapse-tags="1"
     style="width: 240px"
-    readonly
-    placeholder="请选择图标"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
+    popper-class="select-icon-popper"
   >
-    <template #prepend>
-      <svg-icon name="exit-fullscreen" />
+    <template #header>
+      <el-tabs v-model="currentActiveType">
+        <el-tab-pane v-for="(pane, index) in tabsList" :key="index" :label="pane.label" :name="pane.name" />
+      </el-tabs>
     </template>
-    <template #suffix>
-      <el-icon v-if="showClear" class="el-input__icon" @click="handleClear">
-        <el-icon-CircleClose />
-      </el-icon>
-      <el-icon v-else class="el-input__icon">
-        <el-icon-ArrowDown />
-      </el-icon>
-    </template>
-  </el-input>
+    <el-option v-for="(iconName, index) in el_IconList" :key="index" :label="iconName" :value="iconName">
+      <svg-icon :name="iconName" size="20" />
+    </el-option>
+  </el-select>
 </template>
 <script setup lang="ts" name="SelectIcon">
 import { ref, computed, onMounted } from 'vue'
+import * as elIcons from '@element-plus/icons-vue'
+
+const currentActiveType = ref('el-icon-')
+const tabsList = [
+  {
+    label: 'Element Plus',
+    name: 'el-icon-'
+  },
+  {
+    label: 'IconFont',
+    name: 'icon-'
+  },
+  {
+    label: 'SVG',
+    name: 'local-'
+  }
+]
+
 import { inputProps } from 'element-plus'
+
+const el_IconList = computed(() => {
+  return Object.keys(elIcons).map((o) => `el-icon-${o}`)
+})
 
 const inputRef = ref()
 const props = defineProps(inputProps)
@@ -39,44 +59,94 @@ const handleMouseEnter = (evt: MouseEvent) => {
 const handleClear = () => {
   inputRef.value.clear()
 }
-onMounted(() => {
-  console.log(inputRef)
-})
+onMounted(() => {})
 
 const activeName = ref('first')
 const value1 = ref<string>('Option1')
 
-const options = [
+const options = ref([
   {
-    value: 'Option1',
-    label: '生产排名'
+    value: 'first',
+    label: 'User'
   },
   {
-    value: 'Option2',
-    label: '生产排名'
+    value: 'second',
+    label: 'Config'
   },
   {
-    value: 'Option3',
-    label: '生产排名'
+    value: 'third',
+    label: 'Role'
   },
   {
-    value: 'Option4',
-    label: '生产排名'
+    value: 'fourth',
+    label: 'Task'
   },
   {
     value: 'Option5',
     label: 'Label5'
   }
-]
+])
 </script>
 <style scoped lang="scss">
-:deep(.el-icon),
-:deep(.el-input__wrapper),
-:deep(input) {
-  cursor: pointer;
+:deep(.el-tabs__nav-next) {
+  font-size: 15px;
+  line-height: 38px;
+  box-shadow: -5px 0 5px -6px #cccccc;
 }
 
-:deep(.el-input-group__prepend) {
-  padding: 0 10px;
+:deep(.el-tabs__nav-prev) {
+  font-size: 15px;
+  line-height: 38px;
+  box-shadow: 5px 0 5px -6px #cccccc;
+}
+
+:deep(.el-tabs__nav-wrap) {
+  padding: 0 24px;
+}
+
+:deep(.el-tabs__item) {
+  height: 35px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 35px;
+}
+
+:deep(.el-tabs__header) {
+  position: static;
+  margin: 0;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 6%);
+}
+</style>
+<style lang="scss">
+.select-icon-popper {
+  max-width: 350px;
+
+  .el-select-dropdown__header {
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .el-select-dropdown__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6px 12px;
+
+    .el-select-dropdown__item {
+      width: calc(20px + 1rem);
+      height: calc(20px + 1rem);
+      padding: 0.5em;
+      margin-top: 0.25rem;
+      margin-right: 0.5rem;
+      line-height: initial;
+      border: 1px solid rgb(229 231 235);
+
+      &.is-hovering,
+      &.is-selected {
+        color: var(--el-color-primary);
+        background-color: transparent;
+        border-color: var(--el-color-primary);
+      }
+    }
+  }
 }
 </style>
