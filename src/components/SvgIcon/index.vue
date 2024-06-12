@@ -37,7 +37,7 @@ const icon = defineComponent({
       {
         default: () => [
           h('use', {
-            'xlink:href': `#icon-${props.name}`
+            'xlink:href': `#${props.name}`
           })
         ]
       }
