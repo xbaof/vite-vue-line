@@ -21,13 +21,7 @@
         <el-tab-pane v-for="(pane, index) in tabsList" :key="index" :label="pane.label" :name="pane.name" />
       </el-tabs>
     </template>
-    <el-option
-      v-for="(iconName, index) in iconOptions"
-      :id="index + 'sss'"
-      :key="index"
-      :label="iconName"
-      :value="iconName"
-    >
+    <el-option v-for="(iconName, index) in iconOptions" :key="index" :label="iconName" :value="iconName">
       <svg-icon :name="iconName" size="20" />
     </el-option>
   </el-select>
