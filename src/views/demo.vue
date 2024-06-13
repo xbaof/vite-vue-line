@@ -18,7 +18,7 @@ const select = ref('local-enter')
     <svg-icon name="local-enter" size="20" />
     <br />
     <span>SelectIcon：</span>
-    <select-icon v-model="select" clearable />
+    <select-icon v-model="select" clearable width="240px" />
   </div>
 
   <p>

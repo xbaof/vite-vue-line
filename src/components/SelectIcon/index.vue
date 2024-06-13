@@ -6,11 +6,12 @@
       placeholder: placeholder,
       noMatchText: noMatchText,
       noDataText: noDataText,
+      fitInputWidth: fitInputWidth,
       ...$attrs
     }"
+    style="width: 240px"
     popper-class="select-icon-popper"
     @visible-change="handleVisibleChange"
-    @change="handleChange"
   >
     <template #label="{ label, value }">
       <svg-icon :name="value" size="20" />
@@ -37,6 +38,10 @@ const props = defineProps({
     require: false,
     default: ''
   },
+  width: {
+    type: String,
+    default: 'initial'
+  },
   placeholder: {
     type: String,
     default: '请选择图标'
@@ -48,6 +53,10 @@ const props = defineProps({
   noDataText: {
     type: String,
     default: '图标列表为空'
+  },
+  fitInputWidth: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -162,6 +171,8 @@ const handleChange = (value: string) => {
 </style>
 <style lang="scss">
 .select-icon-popper {
+  max-width: v-bind('fitInputWidth? width:  320 ');
+
   .el-select-dropdown__header {
     padding: 0;
     border-bottom: none;
