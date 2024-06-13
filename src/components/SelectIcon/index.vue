@@ -1,17 +1,21 @@
 <template>
   <el-select
-    v-model="activeName"
-    clearable
-    collapse-tags
-    filterable
-    placeholder="请选择图标"
-    no-match-text="未能找到符合的图标"
-    no-data-text="图标列表为空"
-    :max-collapse-tags="1"
-    style="width: 240px"
+    v-model="selectedIcon"
+    v-bind="{
+      filterable: true,
+      placeholder: placeholder,
+      noMatchText: noMatchText,
+      noDataText: noDataText,
+      ...$attrs
+    }"
     popper-class="select-icon-popper"
-    @visible-change="onVisibleChange"
+    @visible-change="handleVisibleChange"
+    @change="handleChange"
   >
+    <template #label="{ label, value }">
+      <svg-icon :name="value" size="20" />
+      <span>&nbsp;{{ label }}</span>
+    </template>
     <template #header>
       <el-tabs v-model="currentActiveType">
         <el-tab-pane v-for="(pane, index) in tabsList" :key="index" :label="pane.label" :name="pane.name" />
@@ -29,9 +33,44 @@
   </el-select>
 </template>
 <script setup lang="ts" name="SelectIcon">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import * as elIcons from '@element-plus/icons-vue'
 import iconFont from '@/assets/iconfont/iconfont.json'
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    require: false,
+    default: ''
+  },
+  placeholder: {
+    type: String,
+    default: '请选择图标'
+  },
+  noMatchText: {
+    type: String,
+    default: '未能找到相符的图标'
+  },
+  noDataText: {
+    type: String,
+    default: '图标列表为空'
+  }
+})
+const emit = defineEmits(['update:modelValue'])
+const selectedIcon = computed({
+  get() {
+    return props.modelValue
+  },
+  set(val) {
+    emit('update:modelValue', val)
+  }
+})
+
+// 默认激活的Tab
+const currentActiveType = ref('')
+const iconOptions = computed(() => {
+  return tabsList.find((o) => o.name === currentActiveType.value)?.icons || []
+})
 
 const modules = computed(() => {
   return import.meta.glob('@/assets/svg/*.svg', {
@@ -62,32 +101,26 @@ const tabsList = [
   }
 ]
 
-const activeName = ref('')
-// 默认激活的Tab
-const currentActiveType = ref('')
-const iconOptions = computed(() => {
-  return tabsList.find((o) => o.name === currentActiveType.value)?.icons || []
-})
-const init = () => {
-  if (activeName.value) {
-    for (const tab of tabsList) {
-      if (activeName.value.startsWith(tab.name)) {
-        currentActiveType.value = tab.name
-      }
+const initActiveType = () => {
+  if (props.modelValue) {
+    const tab = tabsList.find((o) => props.modelValue.startsWith(o.name))
+    if (tab) {
+      currentActiveType.value = tab.name
+    } else {
+      currentActiveType.value = tabsList[0].name
     }
   } else {
     currentActiveType.value = tabsList[0].name
   }
-  console.log(tabsList)
 }
-const onVisibleChange = (visible: boolean) => {
+const handleVisibleChange = (visible: boolean) => {
   if (visible) {
-    init()
+    initActiveType()
   }
 }
-onMounted(() => {
-  init()
-})
+const handleChange = (value: string) => {
+  emit('update:modelValue', value)
+}
 </script>
 <style scoped lang="scss">
 :deep(.el-tabs__header) {
@@ -120,15 +153,23 @@ onMounted(() => {
   font-weight: normal;
   line-height: 35px;
 }
+
+:deep(.el-select__placeholder) {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
 </style>
 <style lang="scss">
 .select-icon-popper {
-  max-width: 320px;
-
   .el-select-dropdown__header {
     padding: 0;
-
-    /* padding-bottom: 5px; */
     border-bottom: none;
   }
 

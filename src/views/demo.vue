@@ -4,6 +4,7 @@ import SelectIcon from '@/components/SelectIcon/index.vue'
 import { ref } from 'vue'
 const test = ref()
 test.value = import.meta.env.VITE_PUBLIC_PATH
+const select = ref('local-enter')
 </script>
 
 <template>
@@ -17,7 +18,7 @@ test.value = import.meta.env.VITE_PUBLIC_PATH
     <svg-icon name="local-enter" size="20" />
     <br />
     <span>SelectIcon：</span>
-    <select-icon clearable />
+    <select-icon v-model="select" clearable />
   </div>
 
   <p>
