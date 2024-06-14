@@ -1,15 +1,15 @@
 <template>
   <el-select
+    ref="selectRef"
     v-model="selectedIcon"
     v-bind="{
       filterable: true,
       placeholder: placeholder,
       noMatchText: noMatchText,
       noDataText: noDataText,
-      fitInputWidth: fitInputWidth,
       ...$attrs
     }"
-    style="width: 240px"
+    :style="{ width: width }"
     popper-class="select-icon-popper"
     @visible-change="handleVisibleChange"
   >
@@ -28,7 +28,8 @@
   </el-select>
 </template>
 <script setup lang="ts" name="SelectIcon">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
 import * as elIcons from '@element-plus/icons-vue'
 import iconFont from '@/assets/iconfont/iconfont.json'
 
@@ -40,7 +41,7 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: 'initial'
+    default: '100%'
   },
   placeholder: {
     type: String,
@@ -53,10 +54,6 @@ const props = defineProps({
   noDataText: {
     type: String,
     default: '图标列表为空'
-  },
-  fitInputWidth: {
-    type: Boolean,
-    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -67,12 +64,6 @@ const selectedIcon = computed({
   set(val) {
     emit('update:modelValue', val)
   }
-})
-
-// 默认激活的Tab
-const currentActiveType = ref('')
-const iconOptions = computed(() => {
-  return tabsList.find((o) => o.name === currentActiveType.value)?.icons || []
 })
 
 const modules = computed(() => {
@@ -103,17 +94,17 @@ const tabsList = [
     })
   }
 ]
-
+// 默认激活的Tab
+const currentActiveType = ref(tabsList[0].name)
+const iconOptions = computed(() => {
+  return tabsList.find((o) => o.name === currentActiveType.value)?.icons || []
+})
 const initActiveType = () => {
   if (props.modelValue) {
     const tab = tabsList.find((o) => props.modelValue.startsWith(o.name))
     if (tab) {
       currentActiveType.value = tab.name
-    } else {
-      currentActiveType.value = tabsList[0].name
     }
-  } else {
-    currentActiveType.value = tabsList[0].name
   }
 }
 const handleVisibleChange = (visible: boolean) => {
@@ -121,9 +112,16 @@ const handleVisibleChange = (visible: boolean) => {
     initActiveType()
   }
 }
-const handleChange = (value: string) => {
-  emit('update:modelValue', value)
+const selectRef = ref<HTMLElement | null>(null)
+const updateMaxWidth = () => {
+  const offsetWidth = selectRef.value?.offsetWidth || 0
+  const element: HTMLElement = document.querySelector('.select-icon-popper')
+  element.style.maxWidth = offsetWidth > 320 ? `${offsetWidth}px` : '320px'
 }
+onMounted(() => {
+  updateMaxWidth()
+  useResizeObserver(selectRef.value, updateMaxWidth)
+})
 </script>
 <style scoped lang="scss">
 :deep(.el-tabs__header) {
@@ -171,8 +169,6 @@ const handleChange = (value: string) => {
 </style>
 <style lang="scss">
 .select-icon-popper {
-  max-width: v-bind('fitInputWidth? width:  320 ');
-
   .el-select-dropdown__header {
     padding: 0;
     border-bottom: none;
