@@ -1,0 +1,15 @@
+/* logo 过渡动画
+------------------------------- */
+@keyframes logo-animation {
+  0% {
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

@@ -13,6 +13,9 @@ import 'element-plus/dist/index.css'
 
 import './assets/iconfont/iconfont.js'
 
+import './styles/reset.scss'
+import './styles/index.scss'
+
 // element icon
 import * as Icons from '@element-plus/icons-vue'
 

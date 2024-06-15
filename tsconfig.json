@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true, // 是否允许从没有默认导出的模块中默认导入
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "esModuleInterop": true,
     "noEmit": true, // 不生成编译后的文件
     "jsx": "preserve",
     "strict": false, // 是否开启严格检查模式

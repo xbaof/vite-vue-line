@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import SelectIcon from '@/components/SelectIcon/index.vue'
+import vertical from '@/layout/sidebar/vertical.vue'
+
 import { ref } from 'vue'
 const test = ref()
 test.value = import.meta.env.VITE_PUBLIC_PATH
@@ -20,18 +22,9 @@ const select = ref('local-enter')
     <span>SelectIcon：</span>
     <select-icon v-model="select" clearable width="240px" />
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">create-vue</a>, the official Vue + Vite
-    starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <div style="width: 200px">
+    <vertical />
+  </div>
 </template>
 
 <style scoped>

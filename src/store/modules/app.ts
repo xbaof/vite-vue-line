@@ -18,7 +18,6 @@ const useAppStore = defineStore({
     }
   },
   persist: {
-    key: 'sssssss',
     storage: localStorage,
     paths: ['size']
   }
