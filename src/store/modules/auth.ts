@@ -1,15 +1,13 @@
 import { defineStore } from 'pinia'
 import { AuthState } from '../interface'
-import { ACCESS_TOKEN_KEY } from '@/enums/cacheEnum'
 import { login, getUser, getPermission } from '@/api/auth'
-import { Local } from '@/utils/storage'
 import generatorDynamicRouter from '@/router/async-router'
 import { RouteRecordRaw } from 'vue-router'
 
 const useAuthStore = defineStore({
   id: 'auth',
   state: (): AuthState => ({
-    token: Local.get(ACCESS_TOKEN_KEY),
+    token: '',
     name: '',
     nickName: '',
     avatar: '',
@@ -33,20 +31,19 @@ const useAuthStore = defineStore({
   actions: {
     // 情况token及用户信息
     resetToken() {
+      this.token = ''
       this.name = this.avatar = ''
       this.perms = []
       this.menus = []
-      Local.clear()
     },
     /**
      *  @description：登录
      */
-    login(params: API.LoginParam) {
+    login(params: Login.LoginParam) {
       return new Promise((resolve, reject) => {
         login(params)
           .then((res) => {
             const { data } = res
-            Local.set(ACCESS_TOKEN_KEY, data.token)
             this.token = data.token
             resolve(data.token)
           })
@@ -73,6 +70,10 @@ const useAuthStore = defineStore({
         return Promise.reject(error)
       }
     }
+  },
+  persist: {
+    storage: localStorage,
+    paths: ['token']
   }
 })
 

@@ -2,7 +2,10 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import SelectIcon from '@/components/SelectIcon/index.vue'
 import vertical from '@/layout/sidebar/vertical.vue'
-
+import { useCssVar } from '@vueuse/core'
+const el = ref(null)
+const color = useCssVar('--casdasdolor', el, { initialValue: '#eee' })
+alert(color.value)
 import { ref } from 'vue'
 const test = ref()
 test.value = import.meta.env.VITE_PUBLIC_PATH
