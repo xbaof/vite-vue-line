@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 
+// vue router
+import router from '@/router'
+import '@/router/routerGuard'
+
 // pinia
 import { createPinia } from 'pinia'
 // 持久化插件
@@ -26,4 +30,4 @@ for (const [key, component] of Object.entries(Icons)) {
 import Icon from '@/components/SvgIcon/index.vue'
 app.component('SvgIcon', Icon)
 
-app.use(createPinia().use(piniaPluginPersistedstate)).use(ElementPlus).mount('#app')
+app.use(router).use(createPinia().use(piniaPluginPersistedstate)).use(ElementPlus).mount('#app')

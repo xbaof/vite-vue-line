@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { AuthState } from '../interface'
 import { login, getUser, getPermission } from '@/api/auth'
-import generatorDynamicRouter from '@/router/async-router'
+import generatorDynamicRouter from '@/router/dynamicRouter'
 import { RouteRecordRaw } from 'vue-router'
 
 const useAuthStore = defineStore({
