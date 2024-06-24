@@ -34,11 +34,11 @@ class HttpRequest {
 
     /** 响应拦截器 */
     this.service.interceptors.response.use((response: AxiosResponse) => {
-      const { code, data, msg } = response.data
-      const statusCode = code || HttpCodeEnum.INTERNAL_SERVER_ERROR
+      const data = response.data
+      const statusCode = data.code || HttpCodeEnum.INTERNAL_SERVER_ERROR
       if (statusCode !== HttpCodeEnum.SUCCESS) {
-        ElMessage.error(msg || '未知错误，请重试')
-        return Promise.reject(new Error(msg || 'Error'))
+        ElMessage.error(data.msg || '未知错误，请重试')
+        return Promise.reject(new Error(data.msg || 'Error'))
       }
       return data
     }),

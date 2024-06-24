@@ -27,7 +27,7 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(Icons)) {
   app.component(`el-icon-${key}`, component)
 }
-import Icon from '@/components/SvgIcon/index.vue'
-app.component('SvgIcon', Icon)
+import SvgIcon from '@/components/SvgIcon/index.vue'
+app.component('SvgIcon', SvgIcon)
 
 app.use(router).use(createPinia().use(piniaPluginPersistedstate)).use(ElementPlus).mount('#app')

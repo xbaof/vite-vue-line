@@ -58,13 +58,13 @@ const useAuthStore = defineStore({
     async afterLogin() {
       try {
         const [user, permission] = await Promise.all([getUser(), getPermission()])
-        const { UserName, NickName, Avatar } = user.data
-        const { Perms, Menus } = permission.data
-        this.name = UserName
-        this.nickName = NickName
-        this.avatar = Avatar ?? (await import('@/assets/images/avatar.png')).default
-        this.perms = Perms
-        this.menus = generatorDynamicRouter(Menus)
+        const { userName, nickName, avatar } = user.data
+        const { perms, menus } = permission.data
+        this.name = userName
+        this.nickName = nickName
+        this.avatar = avatar ?? (await import('@/assets/images/avatar.png')).default
+        this.perms = perms
+        this.menus = generatorDynamicRouter(menus)
         return Promise.resolve(this.menus)
       } catch (error) {
         return Promise.reject(error)

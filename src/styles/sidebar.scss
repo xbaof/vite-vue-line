@@ -1,0 +1,37 @@
+// 左侧菜单栏样式
+.sidebar-container {
+  z-index: 1;
+  width: 200px;
+  overflow: hidden;
+  background-color: var(--menu-bg-color);
+  box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
+  transition:
+    0.28s width ease-in-out,
+    0.28s padding-left ease-in-out,
+    0.28s padding-right ease-in-out;
+
+  .el-scrollbar {
+    .el-scrollbar__bar.is-vertical {
+      right: 0;
+    }
+  }
+
+  .horizontal-collapse-transition {
+    transition:
+      0.28s width ease-in-out,
+      0.28s padding-left ease-in-out,
+      0.28s padding-right ease-in-out !important;
+  }
+
+  &.collapse {
+    width: 54px !important;
+  }
+}
+
+body[layout='vertical'] {
+  --el-menu-active-color: var(--menu-active-color);
+  --el-menu-text-color: var(--menu-text-color);
+  --el-menu-hover-bg-color: var(--menu-hover-bg-color);
+  --el-menu-hover-text-color: var(--menu-hover-text-color);
+  --el-menu-bg-color: var(--menu-bg-color);
+}

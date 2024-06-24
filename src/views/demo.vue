@@ -4,12 +4,14 @@ import SelectIcon from '@/components/SelectIcon/index.vue'
 import vertical from '@/layout/sidebar/vertical.vue'
 import { useCssVar } from '@vueuse/core'
 const el = ref(null)
-const color = useCssVar('--casdasdolor', el, { initialValue: '#eee' })
+import { computed, ref } from 'vue'
 
-import { ref } from 'vue'
 const test = ref()
 test.value = import.meta.env.VITE_PUBLIC_PATH
 const select = ref('local-enter')
+import useStore from '@/store'
+const { themeConfig } = useStore()
+window.document.body.setAttribute('layout', themeConfig.getLayout)
 </script>
 
 <template>

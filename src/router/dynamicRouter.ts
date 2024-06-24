@@ -27,43 +27,43 @@ const ascending = (arr) => {
 const filterAsyncRoute = (menus: System.Menu[], parentPaths: string[] = []): Array<RouteRecordRaw> => {
   return menus.map((menu) => {
     const {
-      Path,
-      Component,
-      MenuName,
-      Icon,
-      OrderSort,
-      IsLink,
-      IsAffix,
-      IsHidden,
-      IsCache,
-      LinkUrl,
-      IsIframe,
-      IsTagsView
+      path,
+      component,
+      menuName,
+      icon,
+      orderSort,
+      isLink,
+      isAffix,
+      isHidden,
+      isCache,
+      linkUrl,
+      isIframe,
+      isTagsView
     } = menu
     const route: Partial<RouteRecordRaw> = {
       meta: {
-        title: MenuName,
-        icon: Icon
+        title: menuName,
+        icon: icon
       }
     }
-    if (menu.Children?.length > 0) {
-      route.path = parentPaths.length > 0 ? `/${parentPaths.join('/')}/${Path}` : `/${Path}`
-      route.children = filterAsyncRoute(menu.Children, parentPaths.concat(Path))
+    if (menu.children?.length > 0) {
+      route.path = parentPaths.length > 0 ? `/${parentPaths.join('/')}/${path}` : `/${path}`
+      route.children = filterAsyncRoute(menu.children, parentPaths.concat(path))
       route.redirect = route.children[0].path
     } else {
-      route.path = parentPaths.length > 0 ? `/${parentPaths.join('/')}/${Path}` : `/${Path}`
-      route.name = nameCase(Path)
-      if (!IsLink) route.component = IsIframe ? Iframe : getDynamicComponent(Component)
+      route.path = parentPaths.length > 0 ? `/${parentPaths.join('/')}/${path}` : `/${path}`
+      route.name = nameCase(path)
+      if (!isLink) route.component = isIframe ? Iframe : getDynamicComponent(component)
       route.meta = {
         ...route.meta,
         ...{
-          noTagsView: !IsTagsView,
-          isHide: IsHidden,
-          isKeepAlive: IsCache,
-          isAffix: IsAffix,
-          isLink: IsLink,
-          linkUrl: LinkUrl,
-          sort: OrderSort
+          noTagsView: !isTagsView,
+          isHide: isHidden,
+          isKeepAlive: isCache,
+          isAffix: isAffix,
+          isLink: isLink,
+          linkUrl: linkUrl,
+          sort: orderSort
         }
       }
     }
