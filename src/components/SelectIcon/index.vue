@@ -10,7 +10,7 @@
       ...$attrs
     }"
     :style="{ width: width }"
-    popper-class="select-icon-popper"
+    popper-class="popper-select-icon"
     @visible-change="handleVisibleChange"
   >
     <template #label="{ label, value }">
@@ -115,7 +115,7 @@ const handleVisibleChange = (visible: boolean) => {
 const selectRef = ref<HTMLElement | null>(null)
 const updateMaxWidth = () => {
   const offsetWidth = selectRef.value?.offsetWidth || 0
-  const element: HTMLElement = document.querySelector('.select-icon-popper')
+  const element: HTMLElement = document.querySelector('.popper-select-icon')
   element.style.maxWidth = offsetWidth > 320 ? `${offsetWidth}px` : '320px'
 }
 onMounted(() => {
@@ -168,7 +168,7 @@ onMounted(() => {
 }
 </style>
 <style lang="scss">
-.select-icon-popper {
+.popper-select-icon {
   .el-select-dropdown__header {
     padding: 0;
     border-bottom: none;

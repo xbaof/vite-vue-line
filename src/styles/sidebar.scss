@@ -1,37 +1,55 @@
-// 左侧菜单栏样式
-.sidebar-container {
-  z-index: 1;
-  width: 200px;
-  overflow: hidden;
-  background-color: var(--menu-bg-color);
-  box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
-  transition:
-    0.28s width ease-in-out,
-    0.28s padding-left ease-in-out,
-    0.28s padding-right ease-in-out;
-
-  .el-scrollbar {
-    .el-scrollbar__bar.is-vertical {
-      right: 0;
-    }
-  }
-
-  .horizontal-collapse-transition {
-    transition:
-      0.28s width ease-in-out,
-      0.28s padding-left ease-in-out,
-      0.28s padding-right ease-in-out !important;
-  }
-
-  &.collapse {
-    width: 54px !important;
-  }
+body {
+  --el-menu-active-color: #ffffff;
+  --el-menu-text-color: hsl(0deg 0% 100% / 65%);
+  --el-menu-hover-bg-color: transparent;
+  --el-menu-hover-text-color: #ffffff;
+  --el-menu-bg-color: #001529;
+  --el-menu-sub-bg-color: #000c17;
+  --el-menu-item-height: 45px;
+  --el-menu-sub-item-height: 45px;
 }
 
 body[layout='vertical'] {
-  --el-menu-active-color: var(--menu-active-color);
-  --el-menu-text-color: var(--menu-text-color);
-  --el-menu-hover-bg-color: var(--menu-hover-bg-color);
-  --el-menu-hover-text-color: var(--menu-hover-text-color);
-  --el-menu-bg-color: var(--menu-bg-color);
+  .el-menu {
+    border: none;
+
+    .is-active > .el-sub-menu__title {
+      color: var(--el-menu-active-color);
+    }
+
+    .el-menu-item,
+    .el-sub-menu__title {
+      &:hover {
+        color: var(--el-menu-hover-text-color);
+      }
+    }
+
+    .el-sub-menu__title,
+    .el-sub-menu .el-menu-item {
+      background-color: var(--el-menu-sub-bg-color);
+    }
+
+    .el-menu-item.is-active {
+      background-color: var(--el-color-primary);
+    }
+  }
+
+  .el-menu--collapse {
+    width: 54px;
+
+    .el-menu-item .el-menu-tooltip__trigger,
+    .el-sub-menu__title.el-tooltip__trigger {
+      justify-content: center;
+    }
+
+    .is-active::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      content: '';
+      background-color: var(--el-color-primary);
+    }
+  }
 }

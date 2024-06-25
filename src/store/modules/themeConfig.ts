@@ -5,7 +5,7 @@ const useThemeConfigStore = defineStore({
   id: 'themeConfig',
   state: (): ThemeConfigState => ({
     layout: 'vertical',
-    collapse: false,
+    collapse: true,
     showTagsView: true,
     showLogo: true,
     uniqueOpened: true,

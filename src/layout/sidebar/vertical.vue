@@ -1,13 +1,8 @@
 <template>
-  <el-aside class="sidebar-container" :class="{ collapse: collapse }">
-    <logo v-if="showLogo" />
-    <el-scrollbar>
-      <!-- :collapse-transition="false"-->
-      <el-menu :collapse="collapse" :default-active="activeMenu" :unique-opened="uniqueOpened">
-        <sidebar-item :menus="{ list: menus }" />
-      </el-menu>
-    </el-scrollbar>
-  </el-aside>
+  <!-- :collapse-transition="false"-->
+  <el-menu :collapse="collapse" :default-active="activeMenu" :unique-opened="uniqueOpened">
+    <sidebar-item :menus="{ list: menus }" />
+  </el-menu>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
