@@ -34,7 +34,8 @@ body {
 }
 
 .el-menu--vertical {
-  .el-menu .el-sub-menu__title {
+  .el-menu .el-sub-menu__title,
+  .el-sub-menu .el-menu-item {
     background-color: var(--el-menu-sub-bg-color);
   }
 

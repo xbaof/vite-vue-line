@@ -3,13 +3,13 @@
     <template v-for="menu in menus" :key="menu.path">
       <el-sub-menu v-if="menu.children && menu.children.length > 0" :key="menu.path + 'el-sub-menu'" :index="menu.path">
         <template #title>
-          <icon v-if="menu.meta.icon" :name="menu.meta.icon" />
+          <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />
           <span>{{ menu.meta.title }}</span>
         </template>
         <SidebarItem :menus="{ list: menu.children }" />
       </el-sub-menu>
       <el-menu-item v-else :key="menu.path + 'el-menu-item'" :index="menu.path">
-        <icon v-if="menu.meta.icon" :name="menu.meta.icon" />
+        <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />
         <template #title>
           <span>{{ menu.meta.title }}</span>
         </template>
