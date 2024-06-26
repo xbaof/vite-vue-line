@@ -2,6 +2,7 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import SelectIcon from '@/components/SelectIcon/index.vue'
 import vertical from '@/layout/sidebar/vertical.vue'
+import horizontal from '@/layout/sidebar/horizontal.vue'
 import { useCssVar } from '@vueuse/core'
 const el = ref(null)
 import { computed, ref } from 'vue'
@@ -29,6 +30,9 @@ window.document.body.setAttribute('layout', themeConfig.getLayout)
   </div>
   <div style="width: 200px">
     <vertical />
+  </div>
+  <div style="margin-top: 50px">
+    <horizontal />
   </div>
 </template>
 

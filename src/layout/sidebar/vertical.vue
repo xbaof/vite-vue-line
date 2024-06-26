@@ -6,13 +6,11 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
-import Logo from './logo.vue'
 import SidebarItem from './sidebarItem.vue'
 import { useRoute } from 'vue-router'
 import useStore from '@/store'
 const { themeConfig } = useStore()
 const collapse = computed(() => themeConfig.getCollapse)
-const showLogo = computed(() => themeConfig.getShowLogo)
 const uniqueOpened = computed(() => themeConfig.getUniqueOpened)
 const menus = [
   { path: '/index', name: 'Dashboard', meta: { title: '首页', icon: 'el-icon-HomeFilled', isAffix: true, sort: 0 } },
