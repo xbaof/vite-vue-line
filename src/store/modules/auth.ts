@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { AuthState } from '../interface'
-import { login, getUser, getPermission } from '@/api/auth'
+import { login, getUser } from '@/api/auth'
+import { getPermission } from '@/api/system'
 import generatorDynamicRouter from '@/router/dynamicRouter'
 import { RouteRecordRaw } from 'vue-router'
 

@@ -5,9 +5,10 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import eslintPlugin from 'vite-plugin-eslint'
 import viteCompression from 'vite-plugin-compression'
 import svgLoader from 'vite-svg-loader'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
-export default ({ mode }: ConfigEnv): UserConfig => {
+export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
   return {
@@ -33,6 +34,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }),
       svgLoader({
         svgo: true
+      }),
+      viteMockServe({
+        enable: command === 'serve',
+        logger: false
       })
     ],
     resolve: {
@@ -64,22 +69,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       // 设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口
       strictPort: false,
       // 自定义代理规则
-      proxy: {
-        // 字符串简写写法
-        '/foo': 'http://localhost:4567/foo',
-        // 选项写法
-        '/api': {
-          target: 'http://jsonplaceholder.typicode.com',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        },
-        // 正则表达式写法
-        '^/fallback/.*': {
-          target: 'http://jsonplaceholder.typicode.com',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/fallback/, '')
-        }
-      }
+      proxy: {}
     },
     build: {
       sourcemap: false,

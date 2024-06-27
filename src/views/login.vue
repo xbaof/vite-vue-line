@@ -5,13 +5,17 @@
 <script setup lang="ts">
 import useStore from '@/store'
 import { useRoute, useRouter } from 'vue-router'
-
 const { auth } = useStore()
 const route = useRoute()
 const router = useRouter()
 const handleLogin = () => {
-  auth.login({ UserName: '', Password: '', CaptchaId: '', VerifyCode: '' }).then((res) => {
-    setTimeout(() => router.replace((route.query.redirect as string) ?? '/'))
-  })
+  auth
+    .login({ userName: 'admin', password: '123456', captchaId: '', verifyCode: '' })
+    .then((res) => {
+      setTimeout(() => router.replace((route.query.redirect as string) ?? '/'))
+    })
+    .catch((res) => {
+      console.log(res)
+    })
 }
 </script>

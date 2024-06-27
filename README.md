@@ -2,7 +2,7 @@
 
 ### demo
 
-- [ ] 图标组件整合
+- [x] 图标组件整合
   - element icon
   - iconFont
   - 本地svg

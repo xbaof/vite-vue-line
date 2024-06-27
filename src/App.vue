@@ -8,11 +8,9 @@ const size = computed(() => app.getSize)
 
 const locale = ref()
 locale.value = zhCn
-import demo from '@/views/demo.vue'
 </script>
 
 <template>
-  <demo />
   <el-config-provider :locale="locale" :size="size">
     <router-view />
   </el-config-provider>

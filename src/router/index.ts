@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+const Layout = () => import('@/layout/index.vue')
 
 // 非layout布局的路由
 const outsideLayout: RouteRecordRaw[] = [
@@ -16,6 +17,7 @@ const outsideLayout: RouteRecordRaw[] = [
 const otherRoutes: RouteRecordRaw[] = [
   {
     path: '/redirect',
+    component: Layout,
     meta: { title: 'redirect', noTagsView: true, isHide: true },
     children: [
       {
@@ -36,7 +38,25 @@ const otherRoutes: RouteRecordRaw[] = [
   }
 ]
 
-export const routes: RouteRecordRaw[] = [...outsideLayout, ...otherRoutes]
+export const routes: RouteRecordRaw[] = [
+  ...outsideLayout,
+  {
+    path: '/',
+    name: 'Layout',
+    redirect: '/index',
+    component: Layout,
+    children: [
+      /**只有在这children下添加的路由才会被渲染至菜单中 */
+      {
+        path: '/index',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: { title: '首页', icon: 'el-icon-Aim', isAffix: true, sort: 0 }
+      }
+    ]
+  },
+  ...otherRoutes
+]
 
 const router = createRouter({
   history: createWebHashHistory(),

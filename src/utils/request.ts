@@ -1,9 +1,9 @@
 import axios, { AxiosInstance, CreateAxiosDefaults, InternalAxiosRequestConfig, AxiosError, AxiosResponse } from 'axios'
 import { HttpCodeEnum } from '@/enums/HttpCodeEnum'
 import { ElMessage } from 'element-plus'
+import useStore from '@/store'
 
 const defaultConfig: CreateAxiosDefaults = {
-  baseURL: import.meta.env.VITE_API_URL,
   timeout: 10 * 1000,
   headers: {
     Accept: 'application/json, text/plain, */*',
@@ -20,11 +20,12 @@ class HttpRequest {
     /** 请求拦截器 */
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
+        const { auth } = useStore()
         // 获取token
-        /*const token = ''
+        const token = auth.token
         if (token) {
           config.headers.Authorization = 'Bearer ' + token
-        }*/
+        }
         return config
       },
       (error: AxiosError) => {
@@ -33,15 +34,16 @@ class HttpRequest {
     )
 
     /** 响应拦截器 */
-    this.service.interceptors.response.use((response: AxiosResponse) => {
-      const data = response.data
-      const statusCode = data.code || HttpCodeEnum.INTERNAL_SERVER_ERROR
-      if (statusCode !== HttpCodeEnum.SUCCESS) {
-        ElMessage.error(data.msg || '未知错误，请重试')
-        return Promise.reject(new Error(data.msg || 'Error'))
-      }
-      return data
-    }),
+    this.service.interceptors.response.use(
+      (response: AxiosResponse) => {
+        const data = response.data
+        const statusCode = data.code || HttpCodeEnum.INTERNAL_SERVER_ERROR
+        if (statusCode !== HttpCodeEnum.SUCCESS) {
+          ElMessage.error(data.msg || '未知错误，请重试')
+          return Promise.reject(data)
+        }
+        return data
+      },
       (error: AxiosError) => {
         /* 404 401刷新token等情况 后续完善 */
         const { response, message } = error
@@ -69,9 +71,10 @@ class HttpRequest {
         }
         return Promise.reject(error)
       }
+    )
   }
 
-  // * 常用请求方法封装
+  // 常用请求方法封装
   get<T>(url: string, params?: object, _object = {}): Promise<ResultModel<T>> {
     return this.service.get(url, { params, ..._object })
   }

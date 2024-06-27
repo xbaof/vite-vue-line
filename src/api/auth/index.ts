@@ -8,7 +8,3 @@ export const login = (params: Login.LoginParam) => {
 export const getUser = () => {
   return request.get<Login.UserInfo>(`/getUser`)
 }
-// 获取用户权限及路由菜单
-export const getPermission = () => {
-  return request.get<Login.UserPermission>(`/getPermission`)
-}
