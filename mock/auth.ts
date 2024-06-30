@@ -108,7 +108,7 @@ export default [
               isCache: false,
               isHidden: false,
               menuType: '1',
-              linkUrl: 'https://cn.vitejs.dev',
+              linkUrl: 'https://vitejs.cn',
               icon: 'local-vite',
               isTagsView: true,
               isAffix: false

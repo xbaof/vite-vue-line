@@ -32,6 +32,11 @@ const otherRoutes: RouteRecordRaw[] = [
     meta: { title: '404' }
   },
   {
+    path: '/resume',
+    component: () => import('@/views/resume/index.vue'),
+    meta: { title: '简历' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     redirect: '/404'
