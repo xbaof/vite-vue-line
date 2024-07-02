@@ -5,7 +5,7 @@
         <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />
         <span>{{ menu.meta.title }}</span>
       </template>
-      <sidebarItem :menus="{ list: menu.children }" />
+      <menuSubItem :menus="{ list: menu.children }" />
     </el-sub-menu>
     <el-menu-item v-else :index="menu.path" @click="handleclick(menu)">
       <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />

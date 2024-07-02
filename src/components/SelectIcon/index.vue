@@ -1,6 +1,6 @@
 <template>
   <el-select
-    ref="selectRef"
+    ref="elSelectRef"
     v-model="selectedIcon"
     v-bind="{
       filterable: true,
@@ -112,15 +112,15 @@ const handleVisibleChange = (visible: boolean) => {
     initActiveType()
   }
 }
-const selectRef = ref<HTMLElement | null>(null)
+const elSelectRef = ref(null)
 const updateMaxWidth = () => {
-  const offsetWidth = selectRef.value?.offsetWidth || 0
+  const offsetWidth = elSelectRef.value?.selectRef?.offsetWidth || 0
   const element: HTMLElement = document.querySelector('.popper-select-icon')
   element.style.maxWidth = offsetWidth > 320 ? `${offsetWidth}px` : '320px'
 }
 onMounted(() => {
   updateMaxWidth()
-  useResizeObserver(selectRef.value, updateMaxWidth)
+  useResizeObserver(elSelectRef.value?.selectRef, updateMaxWidth)
 })
 </script>
 <style scoped lang="scss">
