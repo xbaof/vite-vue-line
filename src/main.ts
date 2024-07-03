@@ -20,14 +20,6 @@ import './assets/iconfont/iconfont.js'
 import './styles/reset.scss'
 import './styles/index.scss'
 
-// element icon
-import * as Icons from '@element-plus/icons-vue'
-
 const app = createApp(App)
-for (const [key, component] of Object.entries(Icons)) {
-  app.component(`el-icon-${key}`, component)
-}
-import SvgIcon from '@/components/SvgIcon/index.vue'
-app.component('SvgIcon', SvgIcon)
 
 app.use(router).use(createPinia().use(piniaPluginPersistedstate)).use(ElementPlus).mount('#app')

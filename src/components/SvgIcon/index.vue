@@ -13,9 +13,7 @@ interface Props extends IconProps {
 const props = defineProps<Props>()
 
 const modules = computed(() => {
-  return import.meta.glob('@/assets/svg/*.svg', {
-    query: '?component'
-  })
+  return import.meta.glob('@/assets/svg/*.svg')
 })
 const getIconComponent = () => {
   const fileName = `/${props.name.replace('local-', '')}.svg`

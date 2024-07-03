@@ -4,7 +4,7 @@ import path from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import eslintPlugin from 'vite-plugin-eslint'
 import viteCompression from 'vite-plugin-compression'
-import svgLoader from 'vite-svg-loader'
+import viteSvgLoader from 'vite-svg-loader'
 import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
@@ -32,8 +32,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           }
         }
       }),
-      svgLoader({
-        svgo: true
+      viteSvgLoader({
+        svgoConfig: {
+          plugins: ['preset-default', { name: 'prefixIds' }]
+        }
       }),
       viteMockServe({
         enable: command === 'serve',
