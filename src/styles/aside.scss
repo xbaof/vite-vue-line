@@ -119,21 +119,14 @@ body {
   background-color: var(--el-menu-bg-color);
   box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
   transition:
-    0.28s width ease-in-out,
-    0.28s padding-left ease-in-out,
-    0.28s padding-right ease-in-out;
+    var(--el-transition-duration) width ease-in-out,
+    var(--el-transition-duration) padding-left ease-in-out,
+    var(--el-transition-duration) padding-right ease-in-out;
 
   .el-scrollbar {
     .el-scrollbar__bar.is-vertical {
       right: 0;
     }
-  }
-
-  .horizontal-collapse-transition {
-    transition:
-      0.28s width ease-in-out,
-      0.28s padding-left ease-in-out,
-      0.28s padding-right ease-in-out !important;
   }
 
   &.collapse {

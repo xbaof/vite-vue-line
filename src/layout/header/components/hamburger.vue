@@ -1,7 +1,7 @@
 <template>
-  <div class="hamburger" @click="toggleCollapse">
+  <div class="hamburger-wrapper" @click="toggleCollapse">
     <svg
-      :class="['hamburger', collapse || 'is-active']"
+      :class="[collapse || 'is-active']"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
       width="64"
@@ -25,14 +25,28 @@ const toggleCollapse = () => {
 </script>
 
 <style lang="scss" scoped>
-.hamburger {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
+.hamburger-wrapper {
+  display: flex;
+  align-items: center;
+  height: 56px; /******************* */
+  padding: 0 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+  -webkit-tap-highlight-color: transparent;
 
-  &.is-active {
-    transform: rotate(180deg);
+  &:hover {
+    background: rgb(0 0 0 / 2.5%);
+  }
+
+  svg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+
+    &.is-active {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>

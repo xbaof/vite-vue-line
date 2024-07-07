@@ -1,30 +1,28 @@
 <template>
-  <el-header class="layout-header">
-    <div class="navbar-container">
-      <navbarLeft />
-      <div class="navbar-right">
-        <!-- size设置 -->
-        <size-select class="navbar-right-item" />
-        <!-- 全屏 -->
-        <screenfull class="navbar-right-item" />
-        <!-- 退出登陆 -->
-        <el-dropdown class="navbar-right-item avatar-container" @command="handleCommandClick">
-          <div class="avatar-wrapper">
-            <img :src="auth.getAvatar" class="user-avatar" />
-            <span class="nick-name">{{ auth.nickName }}</span>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="index">首页</el-dropdown-item>
-              <el-dropdown-item command="Gitee">Gitee</el-dropdown-item>
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item command="logOut" divided>退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
+  <div class="navbar-container">
+    <navbarLeft />
+    <div class="navbar-right">
+      <!-- size设置 -->
+      <size-select class="navbar-right-item" />
+      <!-- 全屏 -->
+      <screenfull class="navbar-right-item" />
+      <!-- 退出登陆 -->
+      <el-dropdown class="navbar-right-item avatar-container" @command="handleCommandClick">
+        <div class="avatar-wrapper">
+          <img :src="auth.getAvatar" class="user-avatar" />
+          <span class="nick-name">{{ auth.nickName }}</span>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="index">首页</el-dropdown-item>
+            <el-dropdown-item command="Gitee">Gitee</el-dropdown-item>
+            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item command="logOut" divided>退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
-  </el-header>
+  </div>
 </template>
 <script lang="ts" setup name="LayoutHeader">
 import Logo from '../aside/logo.vue'
@@ -46,13 +44,8 @@ const navbarLeft = defineComponent({
       {
         default: () => [
           themeConfig.getLayout === 'horizontal'
-            ? h(Logo)
-            : [
-                h(Hamburger, { class: ['hamburger-container'] }),
-                themeConfig.getLayout === 'vertical'
-                  ? h(Breadcrumb, { class: ['breadcrumb-container'] })
-                  : h(Horizontal)
-              ]
+            ? [h(Logo), h(Horizontal)]
+            : [h(Hamburger), themeConfig.getLayout === 'vertical' ? h(Breadcrumb) : h(Horizontal)]
         ]
       }
     )
@@ -107,94 +100,66 @@ const handleCommandClick = (command: string) => {
 }
 </script>
 <style scoped lang="scss">
-.el-header {
-  height: auto;
-}
+$navbar-right-min-width: 300px;
 
-$layout-header-right-min-width: 300px;
+.navbar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px; /******************* */
+  padding: 0;
+  background-color: var(--header-bg-color);
+  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
 
-.layout-header {
-  .navbar-container {
-    position: relative;
+  .navbar-left {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 56px; /******************* */
-    padding: 0;
-    background-color: var(--header-bg-color);
-    box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+    width: calc(100% - $navbar-right-min-width);
+    height: 100%;
+  }
 
-    .navbar-left {
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: $navbar-right-min-width;
+
+    &-item {
       display: flex;
       align-items: center;
-      width: calc(100% - $layout-header-right-min-width);
-      height: 100%;
+      justify-content: center;
+      width: 32px;
+      height: 56px; /******************* */
+      line-height: 56px; /******************* */
+      color: #000000; /******************* */
+      cursor: pointer;
+      transition: background 0.3s;
 
-      .hamburger-container {
-        display: flex;
-        align-items: center;
-        height: 56px; /******************* */
-        padding: 0 15px;
-        cursor: pointer;
-        transition: background 0.3s;
-        -webkit-tap-highlight-color: transparent;
-
-        &:hover {
-          background: rgb(0 0 0 / 2.5%);
-        }
-      }
-
-      .breadcrumb-container {
-        display: flex;
-        align-items: center;
-        height: 56px; /******************* */
-        -webkit-tap-highlight-color: transparent;
-        padding-left: 5px;
+      &:hover {
+        background: #000000; /******************* */
       }
     }
 
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      min-width: $layout-header-right-min-width;
+    .avatar-container {
+      width: auto;
+      padding: 0 8px;
 
-      &-item {
+      .avatar-wrapper {
         display: flex;
         align-items: center;
-        height: 56px; /******************* */
-        padding: 0 8px;
-        line-height: 56px; /******************* */
-        color: #000000; /******************* */
-        cursor: pointer;
-        transition: background 0.3s;
 
-        &:hover {
-          background: #000000; /******************* */
+        .user-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
         }
-      }
 
-      .avatar-container {
-        margin-right: 8px;
-
-        .avatar-wrapper {
-          display: flex;
-          align-items: center;
-
-          .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-          }
-
-          .nick-name {
-            margin-left: 5px;
-          }
+        .nick-name {
+          margin-left: 5px;
         }
       }
     }
   }
-
-  padding: 0;
 }
 </style>

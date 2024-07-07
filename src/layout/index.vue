@@ -1,11 +1,11 @@
 <template>
-  <div class="flex" style="width: 100%; height: 100%">
+  <el-container class="full">
     <layoutAside />
-    <el-container style="flex-direction: column">
-      <LayoutHeader />
-      <LayoutMain />
+    <el-container>
+      <el-header> <LayoutHeader /> </el-header>
+      <el-main> <LayoutMain /> </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 <script setup lang="ts">
 import LayoutMain from './routerView/main.vue'
@@ -30,3 +30,15 @@ const layoutAside = defineComponent({
   }
 })
 </script>
+<style scoped lang="scss">
+.el-header {
+  padding: 0;
+}
+
+.el-main {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+</style>

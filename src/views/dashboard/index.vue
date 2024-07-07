@@ -7,27 +7,26 @@
         <path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3" />
       </g>
     </svg>
-    <navbarLeft />
+    <el-radio-group v-model="radio1" class="ml-4">
+      <el-radio value="vertical" size="large">vertical</el-radio>
+      <el-radio value="horizontal" size="large">horizontal</el-radio>
+      <el-radio value="mix" size="large">mix</el-radio>
+    </el-radio-group>
   </div>
 </template>
 <script setup lang="ts">
 import SelectIcon from '@/components/SelectIcon/index.vue'
-import { ref, defineComponent, h } from 'vue'
+import { ref, computed, h } from 'vue'
 const value = ref('')
-const navbarLeft = defineComponent({
-  render() {
-    return h(
-      'div',
-      { class: ['navbar-left'] },
-      {
-        default: () => [
-          [
-            h('span', { style: { color: 'red' } }, { default: () => ['span1'] }),
-            h('span', { style: { color: 'red' } }, { default: () => ['span2'] })
-          ]
-        ]
-      }
-    )
+import useStore from '@/store'
+const { themeConfig } = useStore()
+
+const radio1 = computed({
+  get() {
+    return themeConfig.getLayout
+  },
+  set(val) {
+    themeConfig.setLayout(val)
   }
 })
 </script>

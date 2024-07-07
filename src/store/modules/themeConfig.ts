@@ -36,6 +36,9 @@ const useThemeConfigStore = defineStore({
     }
   },
   actions: {
+    setLayout(value: 'vertical' | 'horizontal' | 'mix') {
+      this.layout = value
+    },
     setCollapse(collapse: boolean) {
       this.collapse = collapse
     },
