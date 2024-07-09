@@ -1,6 +1,8 @@
 <template>
   <el-container class="full">
-    <layoutAside />
+    <el-aside v-if="layout !== 'horizontal'" :class="['layout-aside', themeConfig.getCollapse ? 'collapse' : '']">
+      <LayoutAside />
+    </el-aside>
     <el-container>
       <el-header> <LayoutHeader /> </el-header>
       <el-main> <LayoutMain /> </el-main>
@@ -8,34 +10,14 @@
   </el-container>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import LayoutMain from './routerView/main.vue'
-import collapse from './aside/collapse.vue'
 import LayoutHeader from './header/index.vue'
-import Logo from './aside/logo.vue'
-import Vertical from './aside/vertical.vue'
-import { ElAside, ElScrollbar } from 'element-plus'
-import { h, defineComponent } from 'vue'
+import LayoutAside from './aside/vertical.vue'
 import useStore from '@/store'
 const { themeConfig } = useStore()
-window.document.body.setAttribute('layout', themeConfig.getLayout)
-
-const layoutAside = defineComponent({
-  render() {
-    return themeConfig.getLayout !== 'horizontal'
-      ? h(
-          ElAside,
-          { class: ['layout-aside', themeConfig.getCollapse ? 'collapse' : ''] },
-          {
-            default: () => [
-              h(Logo),
-              h(ElScrollbar, { style: { height: 'calc(100% - 85px)' } }, { default: () => [h(Vertical)] }),
-              h(collapse, { style: { height: '35px' } })
-            ]
-          }
-        )
-      : null
-  }
-})
+const layout = computed(() => themeConfig.getLayout)
+window.document.body.setAttribute('layout', layout.value)
 </script>
 <style scoped lang="scss">
 .el-header {
