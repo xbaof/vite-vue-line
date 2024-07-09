@@ -118,10 +118,7 @@ body {
   overflow: hidden;
   background-color: var(--el-menu-bg-color);
   box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
-  transition:
-    var(--el-transition-duration) width ease-in-out,
-    var(--el-transition-duration) padding-left ease-in-out,
-    var(--el-transition-duration) padding-right ease-in-out;
+  transition: width 0.28s;
 
   .el-scrollbar {
     .el-scrollbar__bar.is-vertical {

@@ -9,6 +9,7 @@
 </template>
 <script setup lang="ts">
 import LayoutMain from './routerView/main.vue'
+import collapse from './aside/collapse.vue'
 import LayoutHeader from './header/index.vue'
 import Logo from './aside/logo.vue'
 import Vertical from './aside/vertical.vue'
@@ -24,7 +25,13 @@ const layoutAside = defineComponent({
       ? h(
           ElAside,
           { class: ['layout-aside', themeConfig.getCollapse ? 'collapse' : ''] },
-          { default: () => [h(Logo), h(ElScrollbar, {}, { default: () => [h(Vertical)] })] }
+          {
+            default: () => [
+              h(Logo),
+              h(ElScrollbar, { style: { height: 'calc(100% - 85px)' } }, { default: () => [h(Vertical)] }),
+              h(collapse, { style: { height: '35px' } })
+            ]
+          }
         )
       : null
   }

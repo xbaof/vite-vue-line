@@ -27,7 +27,6 @@
 <script lang="ts" setup name="LayoutHeader">
 import Logo from '../aside/logo.vue'
 import Horizontal from '../aside/horizontal.vue'
-import Hamburger from './components/hamburger.vue'
 import Screenfull from './components/screenfull.vue'
 import SizeSelect from './components/sizeSelect.vue'
 import Breadcrumb from './components/breadcrumb.vue'
@@ -45,7 +44,9 @@ const navbarLeft = defineComponent({
         default: () => [
           themeConfig.getLayout === 'horizontal'
             ? [h(Logo), h(Horizontal)]
-            : [h(Hamburger), themeConfig.getLayout === 'vertical' ? h(Breadcrumb) : h(Horizontal)]
+            : themeConfig.getLayout === 'vertical'
+              ? h(Breadcrumb)
+              : h(Horizontal)
         ]
       }
     )

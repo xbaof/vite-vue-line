@@ -1,6 +1,5 @@
 <template>
-  <!-- :collapse-transition="false"-->
-  <el-menu :collapse="collapse" :default-active="activeMenu" :unique-opened="uniqueOpened">
+  <el-menu :collapse-transition="false" :collapse="collapse" :default-active="activeMenu" :unique-opened="uniqueOpened">
     <MenuSubItem :menus="{ list: menus }" />
   </el-menu>
 </template>
