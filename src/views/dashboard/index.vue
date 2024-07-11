@@ -27,6 +27,7 @@ const radio1 = computed({
   },
   set(val) {
     themeConfig.setLayout(val)
+    window.document.body.setAttribute('layout', val)
   }
 })
 </script>

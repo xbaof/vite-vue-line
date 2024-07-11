@@ -21,6 +21,7 @@ window.document.body.setAttribute('layout', layout.value)
 </script>
 <style scoped lang="scss">
 .el-header {
+  height: auto;
   padding: 0;
 }
 

@@ -108,21 +108,23 @@ $navbar-right-min-width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px; /******************* */
+  height: var(--header-height);
   padding: 0;
   background-color: var(--header-bg-color);
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
 
-  .navbar-left {
-    display: flex;
-    align-items: center;
-    width: calc(100% - $navbar-right-min-width);
-    height: 100%;
-  }
-
+  .navbar-left,
   .navbar-right {
     display: flex;
     align-items: center;
+    height: 100%;
+  }
+
+  .navbar-left {
+    width: calc(100% - $navbar-right-min-width);
+  }
+
+  .navbar-right {
     justify-content: flex-end;
     min-width: $navbar-right-min-width;
 
@@ -131,14 +133,13 @@ $navbar-right-min-width: 300px;
       align-items: center;
       justify-content: center;
       width: 32px;
-      height: 56px; /******************* */
-      line-height: 56px; /******************* */
-      color: #000000; /******************* */
+      height: 100%;
+      color: var(--header-action-color);
       cursor: pointer;
       transition: background 0.3s;
 
       &:hover {
-        background: #000000; /******************* */
+        background: var(--header-hover-color);
       }
     }
 

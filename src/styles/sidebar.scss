@@ -8,8 +8,11 @@ body {
   --el-menu-item-height: 45px;
   --el-menu-sub-item-height: 45px;
 
-  // horizontal
-  --el-menu-horizontal-height: 56px;
+  // header
+  --header-bg-color: #ffffff;
+  --header-height: 50px;
+  --header-hover-color: rgb(0 0 0 / 2.5%);
+  --header-action-color: #000000d9;
 
   // aside
   --el-aside-width: 200px;
@@ -88,6 +91,8 @@ body {
   }
 
   &.el-menu {
+    height: 100%;
+
     .el-menu-item.is-active,
     .el-sub-menu.is-active .el-sub-menu__title {
       border-bottom: 2px solid var(--el-color-primary);
@@ -128,5 +133,14 @@ body {
 
   &.collapse {
     width: 54px !important;
+  }
+}
+
+body[layout='horizontal'] {
+  --header-height: 56px;
+
+  .logo {
+    width: var(--el-aside-width);
+    transform: scale(1.13);
   }
 }
