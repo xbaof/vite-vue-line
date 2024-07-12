@@ -11,14 +11,14 @@
 import { computed } from 'vue'
 import useStore from '@/store'
 const { themeConfig } = useStore()
-const collapse = computed(() => themeConfig.getCollapse && themeConfig.getLayout !== 'horizontal')
+const collapse = computed(() => themeConfig.collapse && themeConfig.layout !== 'horizontal')
 const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
 </script>
 
 <style scoped lang="scss">
 .logo-size {
   width: 100%;
-  height: 50px;
+  height: var(--header-height);
   cursor: pointer;
   animation: logo-animation 0.3s ease-in-out;
 
@@ -37,7 +37,7 @@ const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
 
 .logo {
   width: 100%;
-  height: 50px;
+  height: var(--header-height);
   font-weight: 600;
   cursor: pointer;
   animation: logo-animation 0.5s ease-in-out;

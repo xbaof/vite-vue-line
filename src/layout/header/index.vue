@@ -35,6 +35,7 @@ import { ElMessageBox } from 'element-plus'
 import useStore from '@/store'
 import { openLink } from '@/utils'
 const { auth, themeConfig } = useStore()
+
 const navbarLeft = defineComponent({
   render() {
     return h(

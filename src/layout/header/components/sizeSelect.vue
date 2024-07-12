@@ -17,10 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import useStore from '@/store'
 const { app } = useStore()
-const size = computed(() => app.getSize)
+const { size } = storeToRefs(app)
 
 const sizeOptions = ref([
   { label: '默认', value: 'default' },
@@ -28,7 +29,7 @@ const sizeOptions = ref([
   { label: '小型', value: 'small' }
 ])
 
-function handleSetSize(size: 'default' | 'large' | 'small') {
-  app.setSize(size)
+function handleSetSize(_size: 'default' | 'large' | 'small') {
+  size.value = _size
 }
 </script>

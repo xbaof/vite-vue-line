@@ -10,7 +10,7 @@ const whiteList = ['/login', '/redirect']
 router.beforeEach((to, from, next) => {
   NProgress.start()
   const { auth } = useStore()
-  const token = auth.token
+  const token = auth.getToken
   // 已登录
   if (token) {
     if (to.path === '/login') {

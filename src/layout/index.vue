@@ -1,6 +1,6 @@
 <template>
-  <el-container class="full">
-    <el-aside v-if="layout !== 'horizontal'" :class="['layout-aside', themeConfig.getCollapse ? 'collapse' : '']">
+  <el-container class="full" :class="[showLogo ? 'has-logo' : 'no-logo']">
+    <el-aside v-if="layout !== 'horizontal'" :class="['layout-aside', collapse ? 'collapse' : '']">
       <LayoutAside />
     </el-aside>
     <el-container>
@@ -10,13 +10,13 @@
   </el-container>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import LayoutMain from './routerView/main.vue'
 import LayoutHeader from './header/index.vue'
 import LayoutAside from './aside/vertical.vue'
 import useStore from '@/store'
 const { themeConfig } = useStore()
-const layout = computed(() => themeConfig.getLayout)
+const { showLogo, layout, collapse } = storeToRefs(themeConfig)
 window.document.body.setAttribute('layout', layout.value)
 </script>
 <style scoped lang="scss">

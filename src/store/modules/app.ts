@@ -7,16 +7,8 @@ const useAppStore = defineStore({
     device: 'desktop',
     size: 'default'
   }),
-  getters: {
-    getSize(): 'default' | 'large' | 'small' {
-      return this.size
-    }
-  },
-  actions: {
-    setSize(size: 'default' | 'large' | 'small') {
-      this.size = size
-    }
-  },
+  getters: {},
+  actions: {},
   persist: {
     storage: localStorage,
     paths: ['size']

@@ -15,13 +15,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, unref } from 'vue'
+import { unref } from 'vue'
+import { storeToRefs } from 'pinia'
 import useStore from '@/store'
 const { themeConfig } = useStore()
-const collapse = computed(() => themeConfig.getCollapse)
+const { collapse } = storeToRefs(themeConfig)
 const toggleCollapse = () => {
   const collapsed = unref(collapse)
-  themeConfig.setCollapse(!collapsed)
+  collapse.value = !collapsed
 }
 </script>
 
