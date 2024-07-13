@@ -1,11 +1,11 @@
 import useAppStore from './modules/app'
-import useThemeConfigStore from './modules/themeConfig'
+import useSettingStore from './modules/setting'
 import useAuthStore from './modules/auth'
 
 const useStore = () => ({
   app: useAppStore(),
   auth: useAuthStore(),
-  themeConfig: useThemeConfigStore()
+  setting: useSettingStore()
 })
 
 export default useStore

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="collapse" class="flex logo-size">
+  <div v-if="isCollapse" class="flex logo-size">
     <img src="@/assets/vue.svg?url" />
   </div>
   <div v-else class="flex-center logo">
@@ -10,8 +10,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import useStore from '@/store'
-const { themeConfig } = useStore()
-const collapse = computed(() => themeConfig.collapse && themeConfig.layout !== 'horizontal')
+const { app, setting } = useStore()
+const isCollapse = computed(() => !app.sidebar.opened && setting.layout !== 'horizontal')
 const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
 </script>
 

@@ -23,12 +23,12 @@ import { useRoute, useRouter, RouteRecordRaw } from 'vue-router'
 import { openLink } from '@/utils'
 import MenuSubItem from './menuSubItem.vue'
 import useStore from '@/store'
-const { auth, themeConfig } = useStore()
+const { auth, setting } = useStore()
 
 const menus = computed(() => auth.getMenus)
 const route = useRoute()
 const router = useRouter()
-const activeMenu = computed(() => (themeConfig.getLayout === 'mix' ? route.matched[1].path : route.path))
+const activeMenu = computed(() => (setting.getLayout === 'mix' ? route.matched[1].path : route.path))
 const handleclick = (menu: RouteRecordRaw) => {
   if (menu.meta?.isLink) {
     openLink(menu.meta?.linkUrl as string)

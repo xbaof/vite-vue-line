@@ -1,5 +1,5 @@
-.popper-aside,
-.layout-aside,
+.popper-sidebar,
+.layout-sidebar,
 .layout-header {
   .el-menu {
     width: 100%;
@@ -25,7 +25,7 @@
 }
 
 // 左侧菜单栏样式
-.layout-aside {
+.layout-sidebar {
   width: 200px;
   overflow: hidden;
   box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);

@@ -1,6 +1,6 @@
 <template>
   <el-container class="full" :class="[showLogo ? 'has-logo' : 'no-logo']">
-    <el-aside v-if="layout !== 'horizontal'" :class="['layout-aside', collapse ? 'collapse' : '']">
+    <el-aside v-if="layout !== 'horizontal'" :class="['layout-sidebar', { collapse: !app.sidebar.opened }]">
       <LayoutAside />
     </el-aside>
     <el-container>
@@ -13,10 +13,10 @@
 import { storeToRefs } from 'pinia'
 import LayoutMain from './routerView/main.vue'
 import LayoutHeader from './header/index.vue'
-import LayoutAside from './aside/vertical.vue'
+import LayoutAside from './sidebar/vertical.vue'
 import useStore from '@/store'
-const { themeConfig } = useStore()
-const { showLogo, layout, collapse } = storeToRefs(themeConfig)
+const { app, setting } = useStore()
+const { showLogo, layout } = storeToRefs(setting)
 window.document.body.setAttribute('layout', layout.value)
 </script>
 <style scoped lang="scss">
@@ -29,6 +29,5 @@ window.document.body.setAttribute('layout', layout.value)
   position: relative;
   width: 100%;
   padding: 0;
-  overflow: hidden;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="hamburger-wrapper">
     <svg
-      :class="[collapse || 'is-active']"
+      :class="[!sidebar.opened || 'is-active']"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
       width="64"
@@ -18,11 +18,10 @@
 import { unref } from 'vue'
 import { storeToRefs } from 'pinia'
 import useStore from '@/store'
-const { themeConfig } = useStore()
-const { collapse } = storeToRefs(themeConfig)
+const { app } = useStore()
+const { sidebar } = storeToRefs(app)
 const toggleCollapse = () => {
-  const collapsed = unref(collapse)
-  collapse.value = !collapsed
+  sidebar.value.opened = !unref(sidebar).opened
 }
 </script>
 

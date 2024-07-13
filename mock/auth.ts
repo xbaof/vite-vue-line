@@ -79,7 +79,7 @@ export default [
               isHidden: false,
               linkUrl: '',
               menuType: '1',
-              icon: 'el-icon-Setting',
+              icon: 'el-icon-Tools',
               isTagsView: true,
               isAffix: true
             },
@@ -94,7 +94,7 @@ export default [
               isHidden: false,
               linkUrl: 'https://www.baidu.com',
               menuType: '1',
-              icon: 'el-icon-Setting',
+              icon: 'el-icon-Tools',
               isTagsView: false,
               isAffix: false
             },
@@ -129,7 +129,7 @@ export default [
                   isCache: true,
                   isHidden: false,
                   menuType: '1',
-                  icon: 'el-icon-Setting',
+                  icon: 'el-icon-Tools',
                   isTagsView: true,
                   isAffix: false,
                   children: [
@@ -143,7 +143,7 @@ export default [
                       isCache: true,
                       isHidden: false,
                       menuType: '1',
-                      icon: 'el-icon-Setting',
+                      icon: 'el-icon-Tools',
                       isTagsView: true,
                       isAffix: false
                     },
@@ -157,7 +157,7 @@ export default [
                       isCache: true,
                       isHidden: false,
                       menuType: '1',
-                      icon: 'el-icon-Setting',
+                      icon: 'el-icon-Tools',
                       isTagsView: true,
                       isAffix: false,
                       children: [
@@ -171,7 +171,7 @@ export default [
                           isCache: true,
                           isHidden: false,
                           menuType: '1',
-                          icon: 'el-icon-Setting',
+                          icon: 'el-icon-Tools',
                           isTagsView: true,
                           isAffix: false
                         }
@@ -189,7 +189,7 @@ export default [
                   isCache: true,
                   isHidden: false,
                   menuType: '1',
-                  icon: 'el-icon-Setting',
+                  icon: 'el-icon-Tools',
                   isTagsView: true,
                   isAffix: false
                 }

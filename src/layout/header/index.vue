@@ -25,8 +25,8 @@
   </div>
 </template>
 <script lang="ts" setup name="LayoutHeader">
-import Logo from '../aside/logo.vue'
-import Horizontal from '../aside/horizontal.vue'
+import Logo from '../sidebar/logo.vue'
+import Horizontal from '../sidebar/horizontal.vue'
 import Screenfull from './components/screenfull.vue'
 import SizeSelect from './components/sizeSelect.vue'
 import Breadcrumb from './components/breadcrumb.vue'
@@ -34,7 +34,7 @@ import { defineComponent, h } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import useStore from '@/store'
 import { openLink } from '@/utils'
-const { auth, themeConfig } = useStore()
+const { auth, setting } = useStore()
 
 const navbarLeft = defineComponent({
   render() {
@@ -43,9 +43,9 @@ const navbarLeft = defineComponent({
       { class: ['navbar-left'] },
       {
         default: () => [
-          themeConfig.getLayout === 'horizontal'
+          setting.getLayout === 'horizontal'
             ? [h(Logo), h(Horizontal)]
-            : themeConfig.getLayout === 'vertical'
+            : setting.getLayout === 'vertical'
               ? h(Breadcrumb)
               : h(Horizontal)
         ]
@@ -101,68 +101,3 @@ const handleCommandClick = (command: string) => {
   }
 }
 </script>
-<style scoped lang="scss">
-$navbar-right-min-width: 300px;
-
-.navbar-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--header-height);
-  padding: 0;
-  background-color: var(--header-bg-color);
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-
-  .navbar-left,
-  .navbar-right {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-
-  .navbar-left {
-    width: calc(100% - $navbar-right-min-width);
-  }
-
-  .navbar-right {
-    justify-content: flex-end;
-    min-width: $navbar-right-min-width;
-
-    &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 100%;
-      color: var(--header-action-color);
-      cursor: pointer;
-      transition: background 0.3s;
-
-      &:hover {
-        background: var(--header-hover-color);
-      }
-    }
-
-    .avatar-container {
-      width: auto;
-      padding: 0 8px;
-
-      .avatar-wrapper {
-        display: flex;
-        align-items: center;
-
-        .user-avatar {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-        }
-
-        .nick-name {
-          margin-left: 5px;
-        }
-      }
-    }
-  }
-}
-</style>

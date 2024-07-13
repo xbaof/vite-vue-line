@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
-import { ThemeConfigState } from '../interface'
+import { SettingState } from '../interface'
 
-const useThemeConfigStore = defineStore({
-  id: 'themeConfig',
-  state: (): ThemeConfigState => ({
+const useSettingStore = defineStore({
+  id: 'setting',
+  state: (): SettingState => ({
     layout: 'vertical',
-    collapse: true,
     showTagsView: true,
     showLogo: true,
     uniqueOpened: true,
@@ -24,7 +23,7 @@ const useThemeConfigStore = defineStore({
   },
   persist: {
     storage: localStorage,
-    paths: ['layout', 'collapse']
+    paths: ['layout']
   }
 })
-export default useThemeConfigStore
+export default useSettingStore

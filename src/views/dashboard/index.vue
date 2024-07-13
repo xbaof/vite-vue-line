@@ -19,14 +19,14 @@ import SelectIcon from '@/components/SelectIcon/index.vue'
 import { ref, computed, h } from 'vue'
 const value = ref('')
 import useStore from '@/store'
-const { themeConfig } = useStore()
+const { setting } = useStore()
 
 const radio1 = computed({
   get() {
-    return themeConfig.getLayout
+    return setting.getLayout
   },
   set(val) {
-    themeConfig.setLayout(val)
+    setting.setLayout(val)
     window.document.body.setAttribute('layout', val)
   }
 })

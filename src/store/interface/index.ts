@@ -1,13 +1,18 @@
 import { RouteRecordRaw, RouteLocationNormalized } from 'vue-router'
 
 export interface AppState {
+  sidebar: {
+    opened: boolean
+    withoutAnimation: boolean
+    /** 判断是否手动点击Collapse*/
+    isClickCollapse: boolean
+  }
   device: string
   size: 'default' | 'large' | 'small'
 }
 
-export interface ThemeConfigState {
+export interface SettingState {
   layout: 'vertical' | 'horizontal' | 'mix'
-  collapse: boolean
   showLogo: boolean
   showTagsView: boolean
   uniqueOpened: boolean

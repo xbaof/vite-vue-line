@@ -4,6 +4,12 @@ import { AppState } from '../interface'
 const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
+    sidebar: {
+      opened: false,
+      withoutAnimation: false,
+      // 判断是否手动点击Collapse
+      isClickCollapse: false
+    },
     device: 'desktop',
     size: 'default'
   }),
@@ -11,7 +17,7 @@ const useAppStore = defineStore({
   actions: {},
   persist: {
     storage: localStorage,
-    paths: ['size']
+    paths: ['size', 'sidebar']
   }
 })
 
