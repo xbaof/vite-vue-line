@@ -2,7 +2,6 @@ const themes = {
   dark: {
     '--basis-color': '#ffffff',
     '--logo-bg-color': '#002140',
-    '--logo-text-color': '#333333',
     '--header-bg-color': '#ffffff',
     '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
     '--header-horizontal-hover-bg-color': '#242424',
@@ -15,7 +14,6 @@ const themes = {
   light: {
     '--basis-color': '#000000d9',
     '--logo-bg-color': '#ffffff',
-    '--logo-text-color': '#333333',
     '--header-bg-color': '#ffffff',
     '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
     '--header-horizontal-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
@@ -26,13 +24,16 @@ const themes = {
     '--el-menu-sub-bg-color': '#fafafa'
   },
   purple: {
-    '--el-color-primary': '#9847c4',
-    '--el-color-primary-light-3': '#b77ed6',
-    '--el-color-primary-light-5': '#cca3e2',
-    '--el-color-primary-light-7': '#e0c8ed',
-    '--el-color-primary-light-8': '#eadaf3',
-    '--el-color-primary-light-9': '#f5edf9',
-    '--el-color-primary-dark-2': '#7a399d'
+    '--basis-color': '#ffffff',
+    '--logo-bg-color': '#002140',
+    '--header-bg-color': '#ffffff',
+    '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
+    '--header-horizontal-hover-bg-color': '#242424',
+    '--el-menu-active-color': '#fff',
+    '--el-menu-text-color': 'hsl(0deg 0% 100% / 65%)',
+    '--el-menu-hover-text-color': 'var(--basis-color)',
+    '--el-menu-bg-color': '#001529',
+    '--el-menu-sub-bg-color': '#000c17'
   },
   orange: {
     '--el-color-primary': '#ffa726',

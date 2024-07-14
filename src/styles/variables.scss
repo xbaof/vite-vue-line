@@ -1,53 +1,11 @@
-.popper-sidebar,
-.layout-sidebar,
-.layout-header {
-  .el-menu {
-    width: 100%;
-    height: 100%;
-    border: none;
+:root {
+  // header
+  --header-height: 50px;
 
-    .is-active > .el-sub-menu__title {
-      color: var(--el-menu-active-color);
-    }
-
-    .el-menu-item,
-    .el-sub-menu__title {
-      &:hover {
-        color: var(--el-menu-hover-text-color);
-      }
-    }
-
-    .el-menu-item .el-menu-tooltip__trigger,
-    .el-sub-menu__title.el-tooltip__trigger {
-      justify-content: center;
-    }
-  }
-}
-
-// 左侧菜单栏样式
-.layout-sidebar {
-  width: 200px;
-  overflow: hidden;
-  box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
-  transition:
-    0.28s width ease-in-out,
-    0.28s padding-left ease-in-out,
-    0.28s padding-right ease-in-out;
-
-  .el-scrollbar {
-    .el-scrollbar__bar.is-vertical {
-      right: 0;
-    }
-  }
-
-  .horizontal-collapse-transition {
-    transition:
-      0.28s width ease-in-out,
-      0.28s padding-left ease-in-out,
-      0.28s padding-right ease-in-out !important;
-  }
-
-  &.collapse {
-    width: 54px !important;
-  }
+  // sidebar
+  --sidebar-width: 200px;
+  --el-menu-base-level-padding: 15px;
+  --el-menu-hover-bg-color: transparent;
+  --el-menu-item-height: 45px;
+  --el-menu-sub-item-height: 45px;
 }

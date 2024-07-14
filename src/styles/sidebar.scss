@@ -1,17 +1,5 @@
 $navbar-right-width: 300px;
 
-body {
-  // header
-  --header-height: 50px;
-
-  // sidebar
-  --sidebar-width: 200px;
-  --el-menu-base-level-padding: 15px;
-  --el-menu-hover-bg-color: transparent;
-  --el-menu-item-height: 45px;
-  --el-menu-sub-item-height: 45px;
-}
-
 .navbar-container {
   position: relative;
   display: flex;
