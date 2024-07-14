@@ -1,5 +1,5 @@
 <template>
-  <div class="hamburger-wrapper">
+  <div class="collapse-wrapper">
     <svg
       :class="[!sidebar.opened || 'is-active']"
       viewBox="0 0 1024 1024"
@@ -26,7 +26,7 @@ const toggleCollapse = () => {
 </script>
 
 <style lang="scss" scoped>
-.hamburger-wrapper {
+.collapse-wrapper {
   display: flex;
   align-items: center;
   height: 40px;
@@ -44,7 +44,7 @@ const toggleCollapse = () => {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE/Edge */
     user-select: none; /* 标准语法 */
-    fill: #ffffff;
+    fill: var(--basis-color);
 
     &.is-active {
       transform: rotate(180deg);

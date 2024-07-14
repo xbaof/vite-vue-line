@@ -9,6 +9,9 @@ const { size } = storeToRefs(app)
 
 const locale = ref()
 locale.value = zhCn
+
+import { setTheme } from '@/layout/theme'
+setTheme('dark')
 </script>
 
 <template>

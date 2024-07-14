@@ -16,10 +16,26 @@ const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
 </script>
 
 <style scoped lang="scss">
-.logo-size {
+.logo-size,
+.logo {
   width: 100%;
   height: var(--header-height);
+  font-weight: 600;
+  color: var(--basis-color);
   cursor: pointer;
+}
+
+@keyframes lighter-background-color {
+  from {
+    background-color: var(--el-menu-bg-color);
+  }
+
+  to {
+    background-color: #ffffff;
+  }
+}
+
+.logo-size {
   animation: logo-animation 0.3s ease-in-out;
 
   &:hover {
@@ -36,10 +52,6 @@ const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
 }
 
 .logo {
-  width: 100%;
-  height: var(--header-height);
-  font-weight: 600;
-  cursor: pointer;
   animation: logo-animation 0.5s ease-in-out;
 
   img {

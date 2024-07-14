@@ -1,21 +1,29 @@
 const themes = {
-  pink: {
-    '--el-color-primary': '#e91e63',
-    '--el-color-primary-light-3': '#f06292',
-    '--el-color-primary-light-5': '#f48fb1',
-    '--el-color-primary-light-7': '#f8bcd0',
-    '--el-color-primary-light-8': '#fbd2e0',
-    '--el-color-primary-light-9': '#fde9ef',
-    '--el-color-primary-dark-2': '#ba184f'
+  dark: {
+    '--basis-color': '#ffffff',
+    '--logo-bg-color': '#002140',
+    '--logo-text-color': '#333333',
+    '--header-bg-color': '#ffffff',
+    '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
+    '--header-horizontal-hover-bg-color': '#242424',
+    '--el-menu-active-color': '#fff',
+    '--el-menu-text-color': 'hsl(0deg 0% 100% / 65%)',
+    '--el-menu-hover-text-color': 'var(--basis-color)',
+    '--el-menu-bg-color': '#001529',
+    '--el-menu-sub-bg-color': '#000c17'
   },
-  blue: {
-    '--el-color-primary': '#409eff',
-    '--el-color-primary-light-3': '#409eff',
-    '--el-color-primary-light-5': '#a0cfff',
-    '--el-color-primary-light-7': '#c6e2ff',
-    '--el-color-primary-light-8': '#d9ecff',
-    '--el-color-primary-light-9': '#ecf5ff',
-    '--el-color-primary-dark-2': '#337ecc'
+  light: {
+    '--basis-color': '#000000d9',
+    '--logo-bg-color': '#ffffff',
+    '--logo-text-color': '#333333',
+    '--header-bg-color': '#ffffff',
+    '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
+    '--header-horizontal-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
+    '--el-menu-active-color': 'var(--el-color-primary)',
+    '--el-menu-text-color': 'rgba(0, 0, 0, 0.6)',
+    '--el-menu-hover-text-color': 'var(--el-color-primary)',
+    '--el-menu-bg-color': '#ffffff',
+    '--el-menu-sub-bg-color': '#fafafa'
   },
   purple: {
     '--el-color-primary': '#9847c4',
@@ -37,12 +45,12 @@ const themes = {
   }
 }
 export function setTheme(params) {
-  const localColor = localStorage.getItem('themeColor') || 'pink'
+  const localColor = localStorage.getItem('side-theme') || 'pink'
   const themeColor = params || localColor
   const el = document.documentElement
   for (const key in themes[themeColor]) {
     el.style.setProperty(key, themes[themeColor][key])
   }
   // 本地缓存
-  localStorage.setItem('themeColor', themeColor)
+  localStorage.setItem('side-theme', themeColor)
 }
