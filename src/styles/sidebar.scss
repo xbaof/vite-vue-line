@@ -1,3 +1,63 @@
+:root {
+  // header
+  --header-height: 50px;
+
+  // sidebar
+  --sidebar-width: 200px;
+  --sidebar-bg-color: #001529;
+  --el-menu-base-level-padding: 15px;
+  --el-menu-hover-bg-color: transparent;
+  --el-menu-item-height: 45px;
+  --el-menu-sub-item-height: 45px;
+
+  // dynamic
+  --basis-color: #ffffff;
+  --logo-bg-color: #002140;
+
+  // menu
+  --menu-sub-bg-color: #000c17;
+  --el-menu-text-color: hsl(0deg 0% 100% / 65%);
+
+  // header
+  --header-text-color: #000000;
+  --header-hover-bg-color: rgb(0 0 0 / 2.5%);
+  --header-horizontal-hover-bg-color: #242424;
+}
+
+body {
+  --el-menu-active-color: var(--basis-color);
+  --el-menu-hover-text-color: var(--basis-color);
+  --el-menu-bg-color: var(--sidebar-bg-color);
+}
+
+// 左侧栏样式
+.layout-sidebar {
+  width: var(--sidebar-width, 200px);
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--sidebar-bg-color);
+  box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
+  transition:
+    var(--el-transition-duration) width ease-in-out,
+    var(--el-transition-duration) padding-left ease-in-out,
+    var(--el-transition-duration) padding-right ease-in-out;
+
+  .el-scrollbar {
+    .el-scrollbar__bar.is-vertical {
+      right: 0;
+    }
+  }
+
+  &.collapse {
+    width: 54px !important;
+  }
+
+  .logo-size,
+  .logo {
+    background-color: var(--logo-bg-color);
+  }
+}
+
 $navbar-right-width: 300px;
 
 .navbar-container {
@@ -7,7 +67,6 @@ $navbar-right-width: 300px;
   justify-content: space-between;
   height: var(--header-height);
   padding: 0;
-  background-color: var(--header-bg-color);
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
 
   .navbar-left,
@@ -115,11 +174,11 @@ $navbar-right-width: 300px;
   }
 }
 
-// 纵向菜单
+/* // 纵向菜单
 .el-menu--vertical {
   .el-menu .el-sub-menu__title,
   .el-sub-menu .el-menu-item {
-    background-color: var(--el-menu-sub-bg-color);
+    background-color: var(--sidebar-menu-sub-bg-color);
   }
 
   .el-menu-item.is-active::before {
@@ -151,7 +210,7 @@ $navbar-right-width: 300px;
   }
 
   .el-menu--popup {
-    background-color: var(--el-menu-sub-bg-color);
+    background-color: var(--sidebar-menu-sub-bg-color);
 
     .el-menu-item.is-active::before {
       margin: 0;
@@ -162,7 +221,7 @@ $navbar-right-width: 300px;
 // 横向菜单
 .el-menu--horizontal {
   .el-menu .el-sub-menu__title {
-    background-color: var(--el-menu-sub-bg-color);
+    background-color: var(--sidebar-menu-sub-bg-color);
   }
 
   &.el-menu {
@@ -175,10 +234,10 @@ $navbar-right-width: 300px;
   }
 
   .el-menu--popup {
-    background-color: var(--el-menu-sub-bg-color);
+    background-color: var(--sidebar-menu-sub-bg-color);
 
     .el-menu-item {
-      background-color: var(--el-menu-sub-bg-color);
+      background-color: var(--sidebar-menu-sub-bg-color);
     }
 
     .el-menu-item.is-active::before {
@@ -191,56 +250,4 @@ $navbar-right-width: 300px;
     }
   }
 }
-
-// 左侧栏样式
-.layout-sidebar {
-  width: var(--sidebar-width, 200px);
-  height: 100vh;
-  overflow: hidden;
-  background-color: var(--el-menu-bg-color);
-  box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
-  transition:
-    var(--el-transition-duration) width ease-in-out,
-    var(--el-transition-duration) padding-left ease-in-out,
-    var(--el-transition-duration) padding-right ease-in-out;
-
-  .el-scrollbar {
-    .el-scrollbar__bar.is-vertical {
-      right: 0;
-    }
-  }
-
-  &.collapse {
-    width: 54px !important;
-  }
-
-  .logo-size,
-  .logo {
-    background-color: var(--logo-bg-color);
-  }
-}
-
-body[layout='horizontal'] {
-  --header-height: 56px;
-  --header-action-color: var(--el-menu-active-color);
-
-  .navbar-container {
-    background-color: var(--el-menu-bg-color);
-
-    .navbar-right {
-      &-item {
-        &:hover {
-          background: var(--header-horizontal-hover-bg-color);
-        }
-      }
-    }
-  }
-
-  .logo {
-    width: var(--sidebar-width);
-    min-width: var(--sidebar-width);
-  }
-}
-
-body[layout='vertical'] {
-}
+*/

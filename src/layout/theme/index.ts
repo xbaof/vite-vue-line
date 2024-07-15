@@ -1,20 +1,10 @@
 const themes = {
   dark: {
-    '--basis-color': '#ffffff',
-    '--logo-bg-color': '#002140',
-    '--header-bg-color': '#ffffff',
-    '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
-    '--header-horizontal-hover-bg-color': '#242424',
-    '--el-menu-active-color': '#fff',
-    '--el-menu-text-color': 'hsl(0deg 0% 100% / 65%)',
-    '--el-menu-hover-text-color': 'var(--basis-color)',
-    '--el-menu-bg-color': '#001529',
     '--el-menu-sub-bg-color': '#000c17'
   },
   light: {
     '--basis-color': '#000000d9',
     '--logo-bg-color': '#ffffff',
-    '--header-bg-color': '#ffffff',
     '--header-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
     '--header-horizontal-hover-bg-color': 'rgb(0 0 0 / 2.5%)',
     '--el-menu-active-color': 'var(--el-color-primary)',

@@ -11,7 +11,7 @@ const locale = ref()
 locale.value = zhCn
 
 import { setTheme } from '@/layout/theme'
-setTheme('dark')
+// setTheme('dark')
 </script>
 
 <template>
