@@ -16,6 +16,7 @@
 
   // menu
   --menu-sub-bg-color: #000c17;
+  --menu-active-bg-color: #212c3d;
   --el-menu-text-color: hsl(0deg 0% 100% / 65%);
 
   // header
@@ -174,43 +175,43 @@ $navbar-right-width: 300px;
   }
 }
 
-/* // 纵向菜单
+// 纵向菜单
 .el-menu--vertical {
   .el-menu .el-sub-menu__title,
   .el-sub-menu .el-menu-item {
-    background-color: var(--sidebar-menu-sub-bg-color);
+    background-color: var(--menu-sub-bg-color);
   }
 
-  .el-menu-item.is-active::before {
-    position: absolute;
-    inset: 0 8px;
-    margin: 3.5px 0;
-    clear: both;
-    content: '';
-    background: var(--el-color-primary);
-    border-radius: 3px;
+  .el-menu-item.is-active {
+    background-color: var(--menu-active-bg-color);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      content: '';
+      background-color: var(--el-color-primary);
+    }
   }
 
   &.el-menu--collapse {
     width: 54px;
 
-    .el-sub-menu.is-active {
-      position: relative;
-
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        content: '';
-        background-color: var(--el-color-primary);
-      }
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      content: '';
+      background-color: var(--el-color-primary);
     }
   }
 
   .el-menu--popup {
-    background-color: var(--sidebar-menu-sub-bg-color);
+    background-color: var(--menu-active-bg-color);
 
     .el-menu-item.is-active::before {
       margin: 0;
@@ -218,6 +219,7 @@ $navbar-right-width: 300px;
   }
 }
 
+/*
 // 横向菜单
 .el-menu--horizontal {
   .el-menu .el-sub-menu__title {
