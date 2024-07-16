@@ -44,7 +44,11 @@ const toggleCollapse = () => {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE/Edge */
     user-select: none; /* 标准语法 */
-    fill: var(--basis-color);
+    fill: var(--el-menu-text-color);
+
+    &:hover {
+      fill: var(--el-menu-hover-text-color);
+    }
 
     &.is-active {
       transform: rotate(180deg);

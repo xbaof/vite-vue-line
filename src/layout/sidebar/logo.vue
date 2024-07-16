@@ -21,18 +21,8 @@ const title = computed(() => import.meta.env.VITE_GLOB_TITLE)
   width: 100%;
   height: var(--header-height);
   font-weight: 600;
-  color: var(--basis-color);
+  color: var(--el-menu-active-color);
   cursor: pointer;
-}
-
-@keyframes lighter-background-color {
-  from {
-    background-color: var(--el-menu-bg-color);
-  }
-
-  to {
-    background-color: #ffffff;
-  }
 }
 
 .logo-size {
