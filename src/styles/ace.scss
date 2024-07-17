@@ -1,5 +1,4 @@
-/* flex
-------------------------------- */
+/* flex */
 .flex {
   display: flex;
 }
@@ -23,16 +22,31 @@
   height: 100%;
 }
 
-/* 宽度样式
-------------------------------- */
+/* 宽度样式 */
 @for $i from 1 through 20 {
   .width#{$i * 5} {
     width: #{$i * 5%} !important;
   }
 }
 
-/* 外边距、内边距全局样式
-------------------------------- */
+/* 单行文本省略 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 多行文本省略 */
+.ellipsis-multiline {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* 外边距、内边距全局样式 */
 @for $i from 0 through 35 {
   .mt#{$i} {
     margin-top: #{$i}px !important;

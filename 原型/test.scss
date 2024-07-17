@@ -31,21 +31,33 @@ body {
 
 // 左侧栏样式
 .layout-sidebar {
-  width: var(--sidebar-width, 200px);
+  width: initial;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--sidebar-bg-color);
   box-shadow: 10px 0 10px -10px rgb(0 0 0 / 12%);
-  transition: width 0.28s;
+  transition:
+    0.28s width ease-in-out,
+    0.28s padding-left ease-in-out,
+    0.28s padding-right ease-in-out;
+
+  // reset element-ui css
+
+  /* .horizontal-collapse-transition {
+    transition: width 0.28s;
+  } */
+
+  /*
+  .horizontal-collapse-transition {
+    transition:
+      0.28s width ease-in-out,
+      0.28s padding-left ease-in-out,
+      0.28s padding-right ease-in-out;
+  } */
 
   .el-scrollbar {
     .el-scrollbar__bar.is-vertical {
       right: 0;
     }
-  }
-
-  &.collapse {
-    width: 54px !important;
   }
 }
 
@@ -167,6 +179,8 @@ $navbar-right-width: 300px;
 
 // 纵向菜单
 .el-menu--vertical {
+  width: var(--sidebar-width, 200px);
+
   .el-menu .el-sub-menu__title,
   .el-sub-menu .el-menu-item {
     background-color: var(--menu-sub-bg-color);
@@ -186,6 +200,10 @@ $navbar-right-width: 300px;
 
   &.el-menu--collapse {
     width: 54px;
+
+    .ellipsis {
+      text-overflow: initial;
+    }
 
     .el-sub-menu.is-active {
       position: relative;

@@ -4,14 +4,14 @@
       <el-sub-menu v-if="menu.children && menu.children.length > 0" :key="menu.path + 'el-sub-menu'" :index="menu.path">
         <template #title>
           <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />
-          <span>{{ menu.meta.title }}</span>
+          <span class="ellipsis">{{ menu.meta.title }}</span>
         </template>
         <MenuSubItem :menus="{ list: menu.children }" />
       </el-sub-menu>
       <el-menu-item v-else :key="menu.path + 'el-menu-item'" :index="menu.path" @click="handleclick(menu)">
         <svg-icon v-if="menu.meta.icon" :name="menu.meta.icon" />
         <template #title>
-          <span>{{ menu.meta.title }}</span>
+          <span class="ellipsis">{{ menu.meta.title }}</span>
         </template>
       </el-menu-item>
     </template>

@@ -30,7 +30,6 @@ const toggleCollapse = () => {
   display: flex;
   align-items: center;
   height: 40px;
-  cursor: pointer;
   box-shadow: 0 0 6px -3px var(--el-color-primary);
   transition: background 0.3s;
 
@@ -38,6 +37,7 @@ const toggleCollapse = () => {
     width: 18px;
     height: 18px;
     margin-left: var(--el-menu-base-level-padding);
+    cursor: pointer;
 
     /* 快速点击时不选中内容 */
     -webkit-user-select: none; /* Safari */
